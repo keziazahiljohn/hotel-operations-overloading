@@ -68,13 +68,21 @@ public class Employee {
         int hour = time.getHour();
         int minute = time.getMinute();
         double currentTime = hour + (minute / 60.0);
-        double shift = currentTime - startTime;
-        hoursWorked += shift;
-        startTime = 0;
+        startTime = currentTime;
     }
 
     public void punchIn(double time) {
         startTime = time;
+    }
+
+    public void punchOut() {
+        LocalTime time = LocalTime.now();
+        int hour = time.getHour();
+        int minute = time.getMinute();
+        double currentTime = hour + (minute / 60.0);
+        double shift = currentTime - startTime;
+        hoursWorked += shift;
+        startTime = 0;
     }
 
     public void punchOut(double time) {
